@@ -1,2 +1,1 @@
-print("Olá sistema")
-print("Everton")
+print('Zé')
