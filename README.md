@@ -99,5 +99,5 @@ Utilizar ambos garante código limpo, padronizado e com menos bugs.
 ## Owners do Projeto
 
 - [Udson Willams](https://github.com/UdsonWillams/)
-- [Jose Eduardo](https://github.com/Ferreira3)
+- [José Eduardo](https://github.com/Ferreira3)
 - [Everton Ribeiro](https://github.com/EvertonDR)
