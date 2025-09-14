@@ -1,32 +1,40 @@
+from time import sleep
+from os import system
+from products import products_menu
+from clients import clients_menu
+from orders import orders_menu
+
+
 def main():
+    products_database = []
+    clients_database = []
+    orders_database = []
+
     while True:
+        system("cls")
         print(
-            "1 - Cadastro de clientes\n"
-            "2 - Atualização de valores\n"
-            "3 - Remover clientes com divida 0\n"
-            "4 - Buscar por nome de cliente\n"
-            "5 - Mostrar todos os clientes\n"
-            "6 - SAIR"
+            "SISTEMA DE GERENCIAMENTO\n\n"
+            "[1]Produtos\n"
+            "[2]Clientes\n"
+            "[3]Pedidos\n"
+            "[4]Sair\n"
         )
-        choice = int(input("Oque voce deseja? "))
+        choice = input("Escolha uma opção: ")
 
-        if choice == 1:
-            ...
+        if choice == "1":
+            products_database = products_menu(products_database)
 
-        elif choice == 2:
-            ...
+        elif choice == "2":
+            clients_menu()
 
-        elif choice == 3:
-            ...
+        elif choice == "3":
+            orders_menu()
 
-        elif choice == 4:
-            ...
-
-        elif choice == 5:
-            ...
-
-        elif choice == 6:
-            ...
+        elif choice == "4":
+            return 0
+        else:
+            print("Escolha um número válido!")
+            sleep(2)
 
 
 if __name__ == "__main__":
