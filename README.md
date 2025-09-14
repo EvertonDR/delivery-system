@@ -36,13 +36,14 @@ Um sistema automatizado de pedidos
 No PowerShell:
 
 ```powershell
-.\venv\Scripts\Activate.ps1
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 
-No Prompt de Comando (cmd):
+Para desativar o ambiente virtual use o comando:
 
-```cmd
-venv\Scripts\activate.bat
+```
+deactivate
 ```
 
 Se aparecer erro de permissão no PowerShell, execute:
@@ -78,7 +79,7 @@ Automatize verificações antes de cada commit usando [pre-commit](https://pre-c
    ```bash
    pip install pre-commit
    ```
-2. Instale os hooks definidos no `.pre-commit-config.yaml`:
+2. Caso queira instale os hooks definidos no `.pre-commit-config.yaml`:
    ```bash
    pre-commit install
    ```
