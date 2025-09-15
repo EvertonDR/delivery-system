@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Udson Willams",
+        "email": "udson.willams@mail.com"
+    },
+    {
+        "name": "Jose Eduardo",
+        "email": "jose.eduardo@mail.com"
+    },
+    {
+        "name": "Everton Ribeiro",
+        "email": "everton.ribeiro@mail.com"
+    },
+    {
+        "name": "Elida Maria",
+        "email": "elida.maria@mail.com",
+        "adress": "rua geraldo macario, n°222, bayeux, pb",
+        "phone": "83998888899"
+    },
+    {
+        "name": "Helena Maria",
+        "email": "helena.maria@mail.com",
+        "adress": "rua geraldo macario, n°222, bayeux, pb",
+        "phone": "83998888899"
+    }
+]

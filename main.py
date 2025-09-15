@@ -1,14 +1,15 @@
-from time import sleep
 from os import system
-from products import products_menu
+from time import sleep
+
 from clients import clients_menu
 from orders import orders_menu
+from products import products_menu
 
 
 def main():
     products_database = []
     clients_database = []
-    orders_database = []
+    orders_database = []  # noqa
 
     while True:
         system("cls")
@@ -25,7 +26,7 @@ def main():
             products_database = products_menu(products_database)
 
         elif choice == "2":
-            clients_menu()
+            clients_database = clients_menu(clients_database)
 
         elif choice == "3":
             orders_menu()
