@@ -109,12 +109,12 @@ def get_client_by_id(
 
 def update_client_by_id(clients_database: list[dict], client_id: int):
     print("Atualizando cliente que foi passado!")
-    print("Se você nao quer atualizar o campo, aperte [enter]")
     candidate = get_client_by_id(clients_database, client_id, early_return=True)
     if not candidate:
         tprint("cliente nao encontrado")
         return None
 
+    print("Se você nao quer atualizar o campo, aperte [enter]")
     name = input("Por favor, me diga seu Nome: ")
     address = input(
         "Por favor, me diga seu Endereço [formato: Rua, n°, cidade, estado]: "
