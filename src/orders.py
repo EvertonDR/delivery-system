@@ -1,9 +1,9 @@
-from time import sleep
 from os import system
+from time import sleep
 
 
 def orders_menu():  # função que controla o menu dos pedidos
-    orders = {}
+    orders = {}  # noqa
 
     while True:
         system("cls")
