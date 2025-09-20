@@ -148,7 +148,7 @@ def delete_client_by_id(clients_database: list[dict], client_id: int):
 
 
 def import_client_by_json(clients_database: list[dict]):
-    with open("clients.json", "r") as file:
+    with open(".\load_data\clients.json", "r") as file:
         data: list[dict] = json.load(file)
 
     imported: dict

@@ -1,9 +1,9 @@
 from os import system
 from time import sleep
 
-from clients import clients_menu
-from orders import orders_menu
-from products import products_menu
+from src.clients import clients_menu
+from src.orders import orders_menu
+from src.products import products_menu
 
 
 def main():
