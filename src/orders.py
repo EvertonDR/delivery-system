@@ -1,5 +1,5 @@
-from time import sleep
 from os import system
+from time import sleep
 
 
 def create_order():  # Função para criar um novo pedido

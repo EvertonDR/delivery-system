@@ -1,9 +1,9 @@
-from time import sleep
 from os import system
+from time import sleep
 
 
 def products_menu(products_database):  # função que controla o menu dos produtos
-    products = {}
+    products = {}  # noqa
 
     while True:
         system("cls")
