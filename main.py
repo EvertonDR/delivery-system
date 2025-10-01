@@ -7,7 +7,10 @@ from src.products import products_menu
 
 
 def main():
-    products_database = []
+    products_database = [
+        {"name": "X-Tudo", "price": 22.90},
+        {"name": "Milk Shake Morango", "price": 14.99},
+    ]
     clients_database = []
     orders_database = []  # noqa
 
