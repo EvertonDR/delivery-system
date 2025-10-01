@@ -71,16 +71,17 @@ def search_product_byid(database):
     print(f"{"BUSCAR PRODUTO":^52}")
     print("=" * 52)
     search = int(input("Digite o ID do produto: "))
-    if search > len(database)-1 or search < 0:
+    if search > len(database) - 1 or search < 0:
         input("\nProduto não encontrado! Pressione qualquer tecla para continuar.")
     else:
         print(f"{'No.':<5}{'Produto':<40}{'Valor'}")
-        print(f"{search:<5}{database[search]["name"]:.<40}R${database[search]["price"]:.2f}")
+        print(
+            f"{search:<5}{database[search]["name"]:.<40}R${database[search]["price"]:.2f}"
+        )
         input("\nPressione qualquer tecla para voltar.")
 
 
-def update_productid(database):
-    ...
+def update_productid(database): ...
 
 
 def delete_product_byid(database):
@@ -89,21 +90,28 @@ def delete_product_byid(database):
     print(f"{"EXCLUIR PRODUTO":^52}")
     print("=" * 52)
     search = int(input("Digite o ID do produto a ser excluído: "))
-    if search > len(database)-1 or search < 0:
+    if search > len(database) - 1 or search < 0:
         input("\nProduto não encontrado! Pressione qualquer tecla para continuar.")
     else:
         print(f"{'No.':<5}{'Produto':<40}{'Valor'}")
-        print(f"{search:<5}{database[search]["name"]:.<40}R${database[search]["price"]:.2f}")
+        print(
+            f"{search:<5}{database[search]["name"]:.<40}R${database[search]["price"]:.2f}"
+        )
         while True:
-            resp = input(f"\nTem certeza que deseja excluir {database[search]["name"]}?[S/N]").strip().lower()[0]
-            if 'n' in resp:
+            resp = (
+                input(
+                    f"\nTem certeza que deseja excluir {database[search]["name"]}?[S/N]"
+                )
+                .strip()
+                .lower()[0]
+            )
+            if "n" in resp:
                 input("\nOperação cancelada! Pressione qualquer tecla para continuar.")
                 break
-            if 's' in resp:
+            if "s" in resp:
                 del database[search]
                 input("\nProduto excluído! Pressione qualquer tecla para continuar.")
                 break
 
 
-def import_product():
-    ...
+def import_product(): ...
