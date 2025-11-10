@@ -11,8 +11,8 @@ def products_menu(products_database):  # função que controla o menu dos produt
             "PRODUTOS\n\n"
             "[1]Cadastrar\n"
             "[2]Mostrar todos\n"
-            "[3]Buscar por ID\n"
-            "[4]Atualizar ID\n"
+            "[3]Buscar produto\n"
+            "[4]Atualizar produto\n"
             "[5]Excluir produto\n"
             "[6]Importar produto\n"
             "[7]Início\n"
@@ -27,8 +27,7 @@ def products_menu(products_database):  # função que controla o menu dos produt
         elif choice == "3":
             search_product_byid(products_database)
         elif choice == "4":
-            ...
-            # update_productid()
+            update_product_byid(products_database)
         elif choice == "5":
             delete_product_byid(products_database)
         elif choice == "6":
@@ -81,7 +80,26 @@ def search_product_byid(database):
         input("\nPressione qualquer tecla para voltar.")
 
 
-def update_productid(database): ...
+def update_product_byid(database):
+    system("cls")
+    print("=" * 52)
+    print(f"{"ATUALIZAR PRODUTO":^52}")
+    print("=" * 52)
+    search = int(input("Digite o ID do produto: "))
+    if search > len(database) - 1 or search < 0:
+        input("\nProduto não encontrado! Pressione qualquer tecla para continuar.")
+    else:
+        print(f"{'No.':<5}{'Produto':<40}{'Valor'}")
+        print(
+            f"{search:<5}{database[search]["name"]:.<40}R${database[search]["price"]:.2f}"
+        )
+        new_name = str(input(f"\nDigite um novo nome para {database[search]["name"]}(Deixe vazio caso não queira alterar): ")).strip().title()
+        if new_name:
+            database[search]["name"] = new_name
+        new_price = str(input(f"Digite um novo preço para {database[search]["price"]:.2f}(Deixe vazio caso não queira alterar): ")).strip()
+        if new_price:
+            database[search]["price"] = float(new_price)
+        input("\nProduto atualizado! Pressione qualquer tecla para voltar.")
 
 
 def delete_product_byid(database):
@@ -98,17 +116,17 @@ def delete_product_byid(database):
             f"{search:<5}{database[search]["name"]:.<40}R${database[search]["price"]:.2f}"
         )
         while True:
-            resp = (
+            answer = (
                 input(
                     f"\nTem certeza que deseja excluir {database[search]["name"]}?[S/N]"
                 )
                 .strip()
                 .lower()[0]
             )
-            if "n" in resp:
+            if "n" in answer:
                 input("\nOperação cancelada! Pressione qualquer tecla para continuar.")
                 break
-            if "s" in resp:
+            if "s" in answer:
                 del database[search]
                 input("\nProduto excluído! Pressione qualquer tecla para continuar.")
                 break
