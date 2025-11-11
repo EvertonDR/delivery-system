@@ -1,8 +1,6 @@
 from os import system
 from time import sleep
 
-products = {}
-
 
 def products_menu(products_database):  # função que controla o menu dos produtos
     while True:
@@ -24,13 +22,13 @@ def products_menu(products_database):  # função que controla o menu dos produt
         elif choice == "2":
             show_products(products_database)
         elif choice == "3":
-            search_product_byid(products_database)
+            get_product_by_id(products_database)
         elif choice == "4":
-            update_product_byid(products_database)
+            update_product_by_id(products_database)
         elif choice == "5":
-            delete_product_byid(products_database)
+            delete_product_by_id(products_database)
         elif choice == "6":
-            import_product(products_database)
+            import_products(products_database)
         elif choice == "7":
             return products_database
         else:
@@ -38,7 +36,7 @@ def products_menu(products_database):  # função que controla o menu dos produt
             sleep(2)
 
 
-def title(msg, size=52):
+def make_function_title_message(msg, size=52):
     system("cls")
     print("=" * size)
     print(msg.center(size))
@@ -46,7 +44,8 @@ def title(msg, size=52):
 
 
 def create_product(database):
-    title("CADASTRAR PRODUTOS")
+    make_function_title_message("CADASTRAR PRODUTOS")
+    products = {}
     products["name"] = str(input("Nome do produto: ")).strip().title()
     products["price"] = float(input("Valor do produto: R$"))
     database.append(products.copy())
@@ -54,8 +53,8 @@ def create_product(database):
 
 
 def show_products(database):
-    title("LISTA DE PRODUTOS")
-    if len(database) == 0:
+    make_function_title_message("LISTA DE PRODUTOS")
+    if not database:
         print("Lista de produtos vazia!")
     else:
         print(f"{'No.':<5}{'Produto':<40}{'Valor'}")
@@ -64,67 +63,58 @@ def show_products(database):
     input("\nPressione qualquer tecla para voltar.")
 
 
-def search_product_byid(database):
-    title("BUSCAR PRODUTOS")
-
+def get_product_by_id(database):
+    make_function_title_message("BUSCAR PRODUTOS")
     search = int(input("Digite o ID do produto: "))
     if search > len(database) - 1 or search < 0:
         input("\nProduto não encontrado! Pressione qualquer tecla para continuar.")
     else:
         print(f"{'No.':<5}{'Produto':<40}{'Valor'}")
         print(
-            f"{search:<5}{database[search]["name"]:.<40}R${database[search]["price"]:.2f}"
+            f"{search:<5}{database[search].get("name"):.<40}R${database[search].get("price"):.2f}"
         )
         input("\nPressione qualquer tecla para voltar.")
 
 
-def update_product_byid(database):
-    title("ATUALIZAR PRODUTOS")
-
+def update_product_by_id(database):
+    make_function_title_message("ATUALIZAR PRODUTOS")
     search = int(input("Digite o ID do produto: "))
     if search > len(database) - 1 or search < 0:
         input("\nProduto não encontrado! Pressione qualquer tecla para continuar.")
     else:
         print(f"{'No.':<5}{'Produto':<40}{'Valor'}")
         print(
-            f"{search:<5}{database[search]["name"]:.<40}R${database[search]["price"]:.2f}"
+            f"{search:<5}{database[search].get("name"):.<40}R${database[search].get("price"):.2f}"
         )
         new_name = (
-            str(
-                input(
-                    f"\nDigite um novo nome para {database[search]["name"]}(Deixe vazio caso não queira alterar): "
-                )
-            )
+            str(input("\nDigite um novo nome(Deixe vazio caso não queira alterar): "))
             .strip()
             .title()
         )
         if new_name:
             database[search]["name"] = new_name
         new_price = str(
-            input(
-                f"Digite um novo preço para {database[search]["price"]:.2f}(Deixe vazio caso não queira alterar): "
-            )
+            input("Digite um novo preço(Deixe vazio caso não queira alterar): ")
         ).strip()
         if new_price:
             database[search]["price"] = float(new_price)
         input("\nProduto atualizado! Pressione qualquer tecla para voltar.")
 
 
-def delete_product_byid(database):
-    title("EXCLUIR PRODUTOS")
-
+def delete_product_by_id(database):
+    make_function_title_message("EXCLUIR PRODUTOS")
     search = int(input("Digite o ID do produto a ser excluído: "))
     if search > len(database) - 1 or search < 0:
         input("\nProduto não encontrado! Pressione qualquer tecla para continuar.")
     else:
         print(f"{'No.':<5}{'Produto':<40}{'Valor'}")
         print(
-            f"{search:<5}{database[search]["name"]:.<40}R${database[search]["price"]:.2f}"
+            f"{search:<5}{database[search].get("name"):.<40}R${database[search].get("price"):.2f}"
         )
         while True:
             answer = (
                 input(
-                    f"\nTem certeza que deseja excluir {database[search]["name"]}?[S/N]"
+                    f"\nTem certeza que deseja excluir {database[search].get("name")}?[S/N]"
                 )
                 .strip()
                 .lower()[0]
@@ -138,44 +128,20 @@ def delete_product_byid(database):
                 break
 
 
-def import_product(database):
-    title("IMPORTAR PRODUTOS")
-
-    name = (
-        "./load_data/"
-        + str(input("Digite o nome do arquivo: ")).strip().lower()
-        + ".txt"
-    )
+def import_products(database):
+    make_function_title_message("IMPORTAR PRODUTOS")
+    products = {}
     try:
-        with open(name, "rt+") as file:
-            print("Produtos encontrados no arquivo:\n")
+        with open("./load_data/products.txt", "rt+") as file:
+            print("Os seguintes produtos foram importados:\n")
             for line in file:
                 data = line.split(";")
                 data[1] = data[1].replace("\n", "")
                 print(f"{data[0]}\tR${data[1]}")
-            while True:
-                answer = (
-                    input(f"\nDeseja importar os produtos de {name}?[S/N]")
-                    .strip()
-                    .lower()[0]
-                )
-                if "n" in answer:
-                    input(
-                        "\nOperação cancelada! Pressione qualquer tecla para continuar."
-                    )
-                    break
-                if "s" in answer:
-                    with open(name, "rt+") as file:
-                        for line in file:
-                            data = line.split(";")
-                            data[1] = data[1].replace("\n", "")
-                            products["name"] = str(data[0]).strip().title()
-                            products["price"] = float(data[1])
-                            database.append(products.copy())
-                    input(
-                        "\nProdutos importados! Pressione qualquer tecla para voltar."
-                    )
-                    break
+                products["name"] = str(data[0]).strip().title()
+                products["price"] = float(data[1])
+                database.append(products.copy())
+            input("\nPressione qualquer tecla para voltar.")
     except:
         print("Arquivo não encontrado!")
         input("\nPressione qualquer tecla para voltar.")
