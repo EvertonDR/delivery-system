@@ -1,6 +1,5 @@
 from os import system
 from time import sleep
-
 from src.clients import clients_menu
 from src.orders import orders_menu
 from src.products import products_menu
@@ -27,13 +26,10 @@ def main():
 
         if choice == "1":
             products_database = products_menu(products_database)
-
         elif choice == "2":
             clients_database = clients_menu(clients_database)
-
         elif choice == "3":
             orders_menu()
-
         elif choice == "4":
             return 0
         else:
